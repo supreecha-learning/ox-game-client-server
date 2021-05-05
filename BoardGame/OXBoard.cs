@@ -5,7 +5,7 @@ namespace MyserverApp.BoardGame
     public class OXBoard
     {
         private string[,] board = new string[3,3];
-        private string winner = "";
+        //private string winner = "";
         
         public OXBoard()
         {
@@ -17,6 +17,7 @@ namespace MyserverApp.BoardGame
                 }
             }
         }
+
         public void Put(int row , int col, string mark)
         {
             
@@ -31,22 +32,27 @@ namespace MyserverApp.BoardGame
             }
             
         }
+
         public bool CheckWinnerbyRow(int row)
         {
             string previousmark = "";
-            for(int col = 0;col < 3 ; col++)
+            for(int col = 0; col < 3; col++)
             {
                 string mark = board[row,col];
-                if(col == 0)
+                if (col == 0)
                 {
                     previousmark = mark;
                 }
             }
+
+            return true;
         }
+
         public void Isgameover()
         {
-            bool checkrow0 = CheckWinnerbyRow(0,)
+            bool checkrow0 = CheckWinnerbyRow(0);
         }
+
         public void Clear()
         {
             for(int i = 0; i < 3 ; i++)

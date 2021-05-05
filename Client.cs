@@ -32,7 +32,7 @@ namespace MyserverApp
                     string mark = arrmsg[2];
                     b1.Put(row,col,mark);
                     b1.DisplayBoard();
-                    b1.CheckWinner();
+                    b1.CheckWinnerbyRow(0);
                 }
                 else
                 {
