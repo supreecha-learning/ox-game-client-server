@@ -32,7 +32,20 @@ namespace MyserverApp
                     string mark = arrmsg[2];
                     b1.Put(row,col,mark);
                     b1.DisplayBoard();
-                    b1.CheckWinnerbyRow(0);
+                    bool isover = b1.Isgameover();
+                    string getwinner = b1.GettheWinner();
+                    bool isdraw = b1.CheckDraw();
+                    if(isover == true && isdraw != true)
+                    {
+                        Console.WriteLine("Winner is {0}",getwinner);
+                        b1.Clear();              
+                    }
+                    else if(isdraw == true)
+                    {
+                        Console.WriteLine("Is Draw");
+                        b1.Clear();
+                    }
+
                 }
                 else
                 {
