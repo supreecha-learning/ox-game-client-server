@@ -22,21 +22,13 @@ namespace MyserverApp
             {
                 mysck.Listen(10);  // .Listen รอการ connect จาก client ในที่นี้ใส่เป็น 10
                 Socket acceptedConn = mysck.Accept(); // มีการ connect จาก client
-                
-           
-                //Console.WriteLine("Connect Complete");
-                //Thread.Sleep(10000);
-                //Thread t1 = new Thread(DoWork);
-
                 Thread t1 = new Thread(() => DoWork(acceptedConn)); //Annoymous function
                 t1.Start();
                 
             }
                    
 /*            
-            mysck.Close();
-            accept.Close();
-            Console.Read();            
+                        
 */
         }
 

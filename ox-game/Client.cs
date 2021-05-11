@@ -23,7 +23,8 @@ namespace MyserverApp
             {       
                  
                 Console.Write("Player play : ");
-                string msg = Console.ReadLine();  
+                string msg = Console.ReadLine(); 
+                
                 if(msg != "clear")
                 {
                     string[] arrmsg = msg.Split(' ');
@@ -51,7 +52,9 @@ namespace MyserverApp
                 {
                     b1.Clear();
                     b1.DisplayBoard();
-                }                  
+                } 
+                               
+                
                 
 
 
