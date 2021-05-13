@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using MyserverApp.BoardGame;
 
 namespace MyserverApp
@@ -54,7 +55,8 @@ namespace MyserverApp
                     b1.DisplayBoard();
                 } 
                                
-                
+                byte[] arrbyte = Encoding.ASCII.GetBytes(msg);
+                sck.Send(arrbyte,0,arrbyte.Length,0);
                 
 
 

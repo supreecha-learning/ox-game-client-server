@@ -18,19 +18,26 @@ namespace MyserverApp.BoardGame
             }
         }
 
-        public void Put(int row , int col, string mark)
+        public bool Put(int row , int col, string mark)
         {
-            
-            if(board[row,col].Equals(" "))
+            bool ok = true;
+
+            if (board[row,col].Equals(" "))
             {
                 board[row,col] = mark;
             }
             else
             {
-                Console.WriteLine("Is already exist");
-                
+                //Console.WriteLine("Is already exist");
+                ok = false;
             }
             
+            return ok;
+        }
+
+        public string GetMark(int row, int col)
+        {
+            return board[row, col];
         }
 
         private bool CheckWinnerbyRow(int row)

@@ -9,7 +9,7 @@ namespace MyserverApp
     
     public class Server
     {
-        
+        private static string[,] OXboard = new string[3,3];
 
         public void RunServer()
         {         
@@ -38,13 +38,16 @@ namespace MyserverApp
             
             while(true)
             {
-                
+
                 byte[] arrbyte = new byte[1024];
                 int rec = sck.Receive(arrbyte,0,arrbyte.Length,0);
-                Array.Resize(ref arrbyte,rec);
-                Console.WriteLine("Recived : {0}",Encoding.Default.GetString(arrbyte));
-
+                Array.Resize(ref arrbyte,rec);  
+                int row = Convert.ToInt32(arrbyte[0]);
+                int col = Convert.ToInt32(arrbyte[2]);
+                string mark = Convert.ToString(arrbyte[4]);
+                Console.WriteLine(row + " " + col + " " + mark);
                 sck.Send(arrbyte,0,arrbyte.Length,0);
+                
                 
                 
             }
