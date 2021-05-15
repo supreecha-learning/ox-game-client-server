@@ -8,7 +8,7 @@ namespace MyserverApp
 {
     public class Client
     {
-        
+        string[] arrmsg = new string[3];
         public void RunClient()
         {
             
@@ -19,6 +19,7 @@ namespace MyserverApp
             Console.WriteLine("Receive : {0}",msgser);
             
             OXBoard b1 = new OXBoard();
+            
 
             while (true)
             {       
@@ -28,12 +29,13 @@ namespace MyserverApp
                 
                 if(msg != "clear")
                 {
-                    string[] arrmsg = msg.Split(' ');
+                    arrmsg = msg.Split(' ');
                     int row = Int32.Parse(arrmsg[0]);
                     int col = Int32.Parse(arrmsg[1]);
                     string mark = arrmsg[2];
-                    b1.Put(row,col,mark);
+                    b1.Put(row,col,mark);         
                     b1.DisplayBoard();
+                    
                     bool isover = b1.Isgameover();
                     string getwinner = b1.GettheWinner();
                     bool isdraw = b1.CheckDraw();
@@ -57,29 +59,28 @@ namespace MyserverApp
                                
                 byte[] arrbyte = Encoding.ASCII.GetBytes(msg);
                 sck.Send(arrbyte,0,arrbyte.Length,0);
-                
 
-
-
-                /*
-                string msg = Console.ReadLine();
-                byte[] arrbyte = Encoding.ASCII.GetBytes(msg);
-                sck.Send(arrbyte,0,arrbyte.Length,0);
-
-                //Receive echo from server
-                int rec = sck.Receive(arrbyte,0,arrbyte.Length,0);
-                Array.Resize(ref arrbyte,rec);
-                Console.WriteLine("Receive Echo : {0}",Encoding.Default.GetString(arrbyte));
-                */
-
-
-                
-                
-            }
-            /*
-            sck.Close();
-            Console.Read();
-            */
+              
+            }             
         }
+        public int GetRow()
+        {
+            int getrow = Int32.Parse(arrmsg[0]);
+            return(getrow);
+            
+        }
+
+        public int GetCol()
+        {
+            int getcol = Int32.Parse(arrmsg[1]);
+            return(getcol);
+            
+        }
+
+        public string GetMark()
+        {
+            return(arrmsg[2]);
+        }
+        
     }
 }
