@@ -28,7 +28,7 @@ namespace MyserverApp.BoardGame
             }
             else
             {
-                //Console.WriteLine("Is already exist");
+                Console.WriteLine("Is already exist");
                 ok = false;
             }
             

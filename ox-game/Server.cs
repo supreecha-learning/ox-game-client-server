@@ -9,9 +9,9 @@ namespace MyserverApp
     
     public class Server
     {
-        private static string[,] OXboard = new string[3,3];
+        private static string[,] OXboardSer = new string[3,3];
 
-        private static string[] arrforboard = new string[3];
+        
 
         public void RunServer()
         {         
@@ -40,37 +40,35 @@ namespace MyserverApp
             Client c1 = new Client();
             while(true)
             {
-
+                
                 byte[] arrbyte = new byte[1024];
                 int rec = sck.Receive(arrbyte,0,arrbyte.Length,0);
                 Array.Resize(ref arrbyte,rec); 
-                int clientrow = c1.GetRow();
-                int clientcol = c1.GetCol();
-                string clientmark = c1.GetMark();
-                GetRowColMark(clientrow,clientcol,clientmark);
+                int row = c1.SendInputRow(); 
+                int col = c1.SendInputCol(); 
+                string mark = c1.SendInputMark(); 
+                Console.WriteLine(mark);
+                
+                
+                       
+                
+                
 
                
             }
               
         }
 
-        private static void GetRowColMark(int row,int col,string mark)
+        private static void PutPosition(int row, int col,string mark)
         {
-            string myrow = row.ToString();
-            string mycol = col.ToString();
-            arrforboard[0] = myrow;
-            arrforboard[1] = mycol;
-            arrforboard[2] = mark;
-            int i = 0;
-            foreach(string item in arrforboard)
+            if(OXboardSer[row,col].Equals(" "))
             {
-                Console.Write(arrforboard[i] + " ");
-                i++;
+                OXboardSer[row,col] = mark;
             }
             
-            
-
         }
+
+       
 
         
          

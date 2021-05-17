@@ -78,13 +78,16 @@ namespace MyserverApp.BoardGame
                 r++;
             }
         }
+        
+        [TestCase("", false)]
+        [TestCase("O:O:O,X:X:X,O:O: ", true)]
+        public void IsgameoverTest(string boardStr, bool isOver)
+        {
+            OXBoard board = new OXBoard();
+            PutBoardFromString(board, boardStr);
 
-        
-        
-        
-        
-                
-
-
+            bool gamveOver = board.Isgameover();
+            Assert.AreEqual(isOver, gamveOver);
+        }
     }
 }
