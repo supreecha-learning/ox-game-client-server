@@ -81,6 +81,10 @@ namespace MyserverApp.BoardGame
         
         [TestCase("", false)]
         [TestCase("O:O:O,X:X:X,O:O: ", true)]
+        [TestCase("O:X:O,X:X:O,O:O:X", true)]
+        [TestCase("O:O:X,X:O:O,X:O:X",true)]
+        [TestCase("O:O:X,X:O:O,X:X:O",true)]
+        
         public void IsgameoverTest(string boardStr, bool isOver)
         {
             OXBoard board = new OXBoard();
@@ -88,6 +92,50 @@ namespace MyserverApp.BoardGame
 
             bool gamveOver = board.Isgameover();
             Assert.AreEqual(isOver, gamveOver);
+            
         }
+
+        [Test]
+        public void ClearTest()
+        {
+            var clearboard = new OXBoard();
+
+            bool checkclear = clearboard.Clear();
+
+            Assert.AreEqual(true,checkclear);
+        }
+
+        [Test]  
+        public void GettherWinnerTest()
+        {
+            var board = new OXBoard();
+
+            string winner = board.GettheWinner();
+            Assert.AreEqual(winner,winner);
+        
+        }
+        [Test]
+        public void DisplayBoardTest()
+        {
+            var board = new OXBoard();
+            try
+            {
+                board.DisplayBoard();
+                Assert.IsTrue(true);
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
+        }   
+
+        
+
+        
+
+       
+        
+        
+        
     }
 }
