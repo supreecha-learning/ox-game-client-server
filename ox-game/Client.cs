@@ -9,9 +9,9 @@ namespace MyserverApp
     public class Client
     {
         string[] arrmsg = new string[3];
-        private int row = 0;
-        private int col = 0;
-        private string mark = "";
+        
+
+
         public void RunClient()
         {
             
@@ -33,9 +33,9 @@ namespace MyserverApp
                 if(msg != "clear")
                 {
                     arrmsg = msg.Split(' ');
-                    row = Int32.Parse(arrmsg[0]);
-                    col = Int32.Parse(arrmsg[1]);
-                    mark = arrmsg[2];
+                    int row = Int32.Parse(arrmsg[0]);
+                    int col = Int32.Parse(arrmsg[1]);
+                    string mark = arrmsg[2];
                     
                     b1.Put(row,col,mark);         
                     b1.DisplayBoard();
@@ -60,30 +60,14 @@ namespace MyserverApp
                     b1.Clear();
                     b1.DisplayBoard();
                 } 
-                               
-                byte[] arrbyte = Encoding.ASCII.GetBytes(msg);
-                sck.Send(arrbyte);
+                byte[] buffer = Encoding.ASCII.GetBytes(msg);
+                sck.Send(buffer,0,buffer.Length,0);
+                          
+                
      
             }             
         }
 
-        public int SendInputRow()
-        {
-            int newrow = row;
-            return newrow;
-        }
-
-        public int SendInputCol()
-        {
-            int newcol = col;
-            return newcol;
-        }
-
-        public string SendInputMark()
-        {
-            string newmark = mark;
-            return newmark;
-        }
         
 
         

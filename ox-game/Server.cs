@@ -9,7 +9,7 @@ namespace MyserverApp
     
     public class Server
     {
-        private static string[,] OXboardSer = new string[3,3];
+        private string[,] OXboardSer = new string[3,3];
 
         
 
@@ -38,33 +38,77 @@ namespace MyserverApp
         {
             Console.WriteLine("Connect Complete");
             Client c1 = new Client();
+            Server s1 = new Server();
+
             while(true)
             {
                 
                 byte[] arrbyte = new byte[1024];
-                int rec = sck.Receive(arrbyte,0,arrbyte.Length,0);
+                int rec = sck.Receive(arrbyte,0,arrbyte.Length,0);            
                 Array.Resize(ref arrbyte,rec); 
-                int row = c1.SendInputRow(); 
-                int col = c1.SendInputCol(); 
-                string mark = c1.SendInputMark(); 
-                Console.WriteLine(mark);
-                
-                
-                       
-                
-                
-
-               
+                string msgfromclient = Encoding.ASCII.GetString(arrbyte);
+                string[] arrmsg = msgfromclient.Split(' ');
+                int row = Int32.Parse(arrmsg[0]);
+                int col = Int32.Parse(arrmsg[1]);
+                string mark = arrmsg[2];
+                string flipmark = FlipMark(mark);        
+                s1.PutPositionClient(row,col,mark);              
+                //Console.WriteLine(msgfromclient);
+                s1.DisplayBoardServer();
+            
             }
-              
+         
         }
 
-        private static void PutPosition(int row, int col,string mark)
+        private static string FlipMark(string markclient)
         {
-            if(OXboardSer[row,col].Equals(" "))
+            string remark = "";
+            if(markclient.Equals("O"))
+            {
+                remark = "X";
+            }
+            else
+            {
+                remark = "O";
+            }
+            return remark;
+        }
+
+        private static void CheckBoardEmpty()
+        {
+            for(int row = 0 ; row < 3 ; row++)
+            {
+                for(int col = 0 ; col < 3 ;col++)
+                {
+
+                }
+            }
+        }
+
+        private void DisplayBoardServer()
+        {
+            for (int r=0; r<3; r++)
+            {     
+                Console.WriteLine("   |   |   ");        
+                Console.WriteLine(" {0} | {1} | {2} ", OXboardSer[r,0], OXboardSer[r,1], OXboardSer[r,2]);
+                if (r != 2)
+                {
+                    Console.WriteLine("___|___|___");                  
+                }
+                 
+            }
+            Console.WriteLine("   |   |   ");   
+        }
+        
+
+        private void PutPositionClient(int row, int col,string mark)
+        {
+            if(OXboardSer[row,col] == " ")
             {
                 OXboardSer[row,col] = mark;
             }
+            
+            
             
         }
 
