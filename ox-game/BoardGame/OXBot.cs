@@ -5,45 +5,57 @@ namespace MyserverApp.BoardGame
     public class OXbot
     {
 
-        string[,] Oxser = new string[3,3];
-        public OXbot()
-        {
-            Server s1 = new Server();
-            Oxser = s1.OXboardSer; 
-        }
-        public string SendPositionBotplay()
-        {
-           return "SS";
-        }
+        private string[,] Oxser = new string[3,3];
+        private string flip = "";
+        private int rowbot = 0;
+        private int colbot = 0;
+        private string flipmark = "";
 
-        public bool CheckEmptyinArr(string[,] arrser)
+        public string SendPosition()
         {
+            
+            string myrow = Convert.ToString(rowbot);
+            string mycal = Convert.ToString(colbot);
+            string myflipmark = Convert.ToString(flipmark);
+            string position = myrow + " " + mycal + " " + myflipmark;
+            return position;
+            
+        }
+        
+
+        public void CheckEmptyinArr()
+        {
+            OXbot bot = new OXbot();
             for(int row = 0 ; row < 3; row++)
             {
                 for(int col = 0 ; col < 3 ; col++)
                 {
-                    if(arrser[row,col].Equals(" "))
+                    if(Oxser[row,col].Equals(" "))
                     {
-                        return true;
+                        bot.PutPositionBoard(row,col,flip);
+                        rowbot = row;
+                        colbot = col;
+                        flipmark = flip;
+                        
                     }
                     
                 }
             }
-            return false;
+           
         }
 
-        public string FlipMark(string markclient)
+        public void FlipMark(string markclient)
         {
-            string remark = "";
+            
             if(markclient.Equals("O"))
             {
-                remark = "X";
+                flip = "X";
             }
             else
             {
-                remark = "O";
+                flip = "O";
             }
-            return remark;
+            
         }
 
         public void PutPositionBoard(int row,int col,string mark)

@@ -19,11 +19,9 @@ namespace MyserverApp
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"),6666);
             sck.Connect(endpoint);
             string msgser = "Hello Client";
-            Console.WriteLine("Receive : {0}",msgser);
-            
+            Console.WriteLine("Receive : {0}",msgser);          
             OXBoard b1 = new OXBoard();
             
-
             while (true)
             {       
                  
@@ -35,11 +33,9 @@ namespace MyserverApp
                     arrmsg = msg.Split(' ');
                     int row = Int32.Parse(arrmsg[0]);
                     int col = Int32.Parse(arrmsg[1]);
-                    string mark = arrmsg[2];
-                    
+                    string mark = arrmsg[2];                
                     b1.Put(row,col,mark);         
-                    b1.DisplayBoard();
-                    
+                    b1.DisplayBoard();                  
                     bool isover = b1.Isgameover();
                     string getwinner = b1.GettheWinner();
                     bool isdraw = b1.CheckDraw();
@@ -62,11 +58,17 @@ namespace MyserverApp
                 } 
                 byte[] buffer = Encoding.ASCII.GetBytes(msg);
                 sck.Send(buffer,0,buffer.Length,0);
+
+                
+
+                
                           
                 
      
             }             
         }
+
+        
 
         
 

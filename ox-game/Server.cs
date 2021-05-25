@@ -26,7 +26,7 @@ namespace MyserverApp
 
         public void RunServer()
         {         
-              
+            
             Socket mysck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp); //สร้าง socket โดยระบุ ip sockettype protocaltype
             mysck.Bind(new IPEndPoint(IPAddress.Parse("127.0.0.1"),6666)); // สั่งให้ socket รอการเชื่อมต่อโดยผ่าน port ที่ระบุ จาก client
             Console.WriteLine("Waiting for Connect");     
@@ -52,7 +52,7 @@ namespace MyserverApp
 
             while(true)
             {
-                
+                //receive position from client
                 byte[] arrbyte = new byte[1024];
                 int rec = sck.Receive(arrbyte,0,arrbyte.Length,0);            
                 Array.Resize(ref arrbyte,rec); 
@@ -60,16 +60,16 @@ namespace MyserverApp
                 string[] arrmsg = msgfromclient.Split(' ');
                 int row = Int32.Parse(arrmsg[0]);
                 int col = Int32.Parse(arrmsg[1]);
-                string mark = arrmsg[2];           
-                string flipmark = mybot.FlipMark(mark);       
+                string mark = arrmsg[2]; 
+
+                mybot.FlipMark(mark);
                 mybot.PutPositionBoard(row,col,mark);  
+                mybot.CheckEmptyinArr();
+                string botplay = mybot.SendPosition();       
                 mybot.DisplayBoard();        
                 
             
             }
-         
-        }
-
-        
+        }    
     }   
 }
