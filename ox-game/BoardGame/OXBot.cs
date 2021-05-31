@@ -6,55 +6,45 @@ namespace MyserverApp.BoardGame
     {
 
         private string[,] Oxser = new string[3,3];
-        private string flip = "";
-        private int rowbot = 0;
-        private int colbot = 0;
-        private string flipmark = "";
-
-        public string SendPosition()
+        public OXbot()
         {
-            
-            string myrow = Convert.ToString(rowbot);
-            string mycal = Convert.ToString(colbot);
-            string myflipmark = Convert.ToString(flipmark);
-            string position = myrow + " " + mycal + " " + myflipmark;
-            return position;
-            
+            Server s1 = new Server();
+            Oxser = s1.OXboardSer;
         }
-        
 
-        public void CheckEmptyinArr()
+     
+        public string SendPositionBotplay(string flip)
         {
-            OXbot bot = new OXbot();
+            string result = "";
+            string flipmark = flip;
             for(int row = 0 ; row < 3; row++)
             {
                 for(int col = 0 ; col < 3 ; col++)
                 {
                     if(Oxser[row,col].Equals(" "))
                     {
-                        bot.PutPositionBoard(row,col,flip);
-                        rowbot = row;
-                        colbot = col;
-                        flipmark = flip;
-                        
+                        result = row + " " + col + " " + flipmark;
+                        return result;   
                     }
                     
                 }
             }
+            return result;
            
         }
 
-        public void FlipMark(string markclient)
+        public string FlipMark(string flip)
         {
-            
-            if(markclient.Equals("O"))
+            string remark = "";
+            if(flip.Equals("O"))
             {
-                flip = "X";
+                remark = "X";
             }
             else
             {
-                flip = "O";
+                remark = "O";
             }
+            return remark;
             
         }
 

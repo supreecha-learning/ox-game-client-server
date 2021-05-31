@@ -8,9 +8,7 @@ namespace MyserverApp
 {
     public class Client
     {
-        string[] arrmsg = new string[3];
         
-
 
         public void RunClient()
         {
@@ -30,7 +28,7 @@ namespace MyserverApp
                 
                 if(msg != "clear")
                 {
-                    arrmsg = msg.Split(' ');
+                    string[] arrmsg = msg.Split(' ');
                     int row = Int32.Parse(arrmsg[0]);
                     int col = Int32.Parse(arrmsg[1]);
                     string mark = arrmsg[2];                
@@ -58,6 +56,19 @@ namespace MyserverApp
                 } 
                 byte[] buffer = Encoding.ASCII.GetBytes(msg);
                 sck.Send(buffer,0,buffer.Length,0);
+
+                //receive from bot
+                byte[] databot = new byte[1024];
+                int rec = sck.Receive(databot,0,databot.Length,0);            
+                Array.Resize(ref databot,rec); 
+                string positionbot = Encoding.ASCII.GetString(databot);
+                string[] arrbotplay = positionbot.Split(' ');
+                int botrow = Int32.Parse(arrbotplay[0]);
+                int botcol = Int32.Parse(arrbotplay[1]);
+                string botstr = arrbotplay[2];
+                b1.Put(botrow,botcol,botstr);
+                b1.DisplayBoard();
+
 
                 
 

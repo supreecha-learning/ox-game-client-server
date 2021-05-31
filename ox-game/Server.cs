@@ -39,10 +39,6 @@ namespace MyserverApp
                 t1.Start();
                 
             }
-                   
-/*            
-                        
-*/
         }
 
         private void DoWork(Socket sck)
@@ -62,10 +58,15 @@ namespace MyserverApp
                 int col = Int32.Parse(arrmsg[1]);
                 string mark = arrmsg[2]; 
 
-                mybot.FlipMark(mark);
+                string flipmark = mybot.FlipMark(mark);
                 mybot.PutPositionBoard(row,col,mark);  
-                mybot.CheckEmptyinArr();
-                string botplay = mybot.SendPosition();       
+                string posibot = mybot.SendPositionBotplay(flipmark);
+                Console.WriteLine(posibot);
+                //Send botplay
+                byte[] databot = Encoding.ASCII.GetBytes(posibot);
+                sck.Send(databot,0,databot.Length,0);
+                
+                
                 mybot.DisplayBoard();        
                 
             
