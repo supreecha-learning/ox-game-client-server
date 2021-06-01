@@ -23,6 +23,7 @@ namespace MyserverApp.BoardGame
                 {
                     if(Oxser[row,col].Equals(" "))
                     {
+                        Oxser[row,col] = flipmark;
                         result = row + " " + col + " " + flipmark;
                         return result;   
                     }

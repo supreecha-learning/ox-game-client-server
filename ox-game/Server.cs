@@ -61,13 +61,14 @@ namespace MyserverApp
                 string flipmark = mybot.FlipMark(mark);
                 mybot.PutPositionBoard(row,col,mark);  
                 string posibot = mybot.SendPositionBotplay(flipmark);
-                Console.WriteLine(posibot);
+                //Console.WriteLine(posibot);
+                
                 //Send botplay
                 byte[] databot = Encoding.ASCII.GetBytes(posibot);
                 sck.Send(databot,0,databot.Length,0);
                 
                 
-                mybot.DisplayBoard();        
+                //mybot.DisplayBoard();        
                 
             
             }

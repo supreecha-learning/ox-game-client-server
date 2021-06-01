@@ -24,7 +24,7 @@ namespace MyserverApp
             {       
                  
                 Console.Write("Player play : ");
-                string msg = Console.ReadLine(); 
+                string msg = Console.ReadLine();
                 
                 if(msg != "clear")
                 {
@@ -32,15 +32,16 @@ namespace MyserverApp
                     int row = Int32.Parse(arrmsg[0]);
                     int col = Int32.Parse(arrmsg[1]);
                     string mark = arrmsg[2];                
-                    b1.Put(row,col,mark);         
-                    b1.DisplayBoard();                  
+                    b1.Put(row,col,mark); 
                     bool isover = b1.Isgameover();
                     string getwinner = b1.GettheWinner();
-                    bool isdraw = b1.CheckDraw();
+                    bool isdraw = b1.CheckDraw();                  
+                    b1.DisplayBoard();                  
+                    
                     if(isover == true && isdraw != true)
                     {
                         Console.WriteLine("Winner is {0}",getwinner);
-                        b1.Clear();              
+                        return;                                 
                     }
                     else if(isdraw == true)
                     {
@@ -58,6 +59,7 @@ namespace MyserverApp
                 sck.Send(buffer,0,buffer.Length,0);
 
                 //receive from bot
+                
                 byte[] databot = new byte[1024];
                 int rec = sck.Receive(databot,0,databot.Length,0);            
                 Array.Resize(ref databot,rec); 
@@ -66,15 +68,10 @@ namespace MyserverApp
                 int botrow = Int32.Parse(arrbotplay[0]);
                 int botcol = Int32.Parse(arrbotplay[1]);
                 string botstr = arrbotplay[2];
-                b1.Put(botrow,botcol,botstr);
+                b1.Put(botrow,botcol,botstr);             
                 b1.DisplayBoard();
 
 
-                
-
-                
-                          
-                
      
             }             
         }
