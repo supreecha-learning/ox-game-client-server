@@ -66,11 +66,7 @@ namespace MyserverApp
                 //Send botplay
                 byte[] databot = Encoding.ASCII.GetBytes(posibot);
                 sck.Send(databot,0,databot.Length,0);
-                
-                
-                //mybot.DisplayBoard();        
-                
-            
+
             }
         }    
     }   

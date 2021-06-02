@@ -19,6 +19,7 @@ namespace MyserverApp
             string msgser = "Hello Client";
             Console.WriteLine("Receive : {0}",msgser);          
             OXBoard b1 = new OXBoard();
+            OXbot mybot = new OXbot();
             
             while (true)
             {       
@@ -68,7 +69,7 @@ namespace MyserverApp
                 int botrow = Int32.Parse(arrbotplay[0]);
                 int botcol = Int32.Parse(arrbotplay[1]);
                 string botstr = arrbotplay[2];
-                b1.Put(botrow,botcol,botstr);             
+                b1.Put(botrow,botcol,botstr);       
                 b1.DisplayBoard();
 
 
