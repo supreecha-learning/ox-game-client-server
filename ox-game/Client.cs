@@ -8,7 +8,7 @@ namespace MyserverApp
 {
     public class Client
     {
-        
+        private bool hasreturn = false;
 
         public void RunClient()
         {
@@ -28,28 +28,12 @@ namespace MyserverApp
                 string msg = Console.ReadLine();
                 
                 if(msg != "clear")
-                {
-                    string[] arrmsg = msg.Split(' ');
-                    int row = Int32.Parse(arrmsg[0]);
-                    int col = Int32.Parse(arrmsg[1]);
-                    string mark = arrmsg[2];                
-                    b1.Put(row,col,mark); 
-                    bool isover = b1.Isgameover();
-                    string getwinner = b1.GettheWinner();
-                    bool isdraw = b1.CheckDraw();                  
-                    b1.DisplayBoard();                  
-                    
-                    if(isover == true && isdraw != true)
+                {              
+                    CheckAllofGame(b1,msg);
+                    if(hasreturn == true)
                     {
-                        Console.WriteLine("Winner is {0}",getwinner);
-                        return;                                 
-                    }
-                    else if(isdraw == true)
-                    {
-                        Console.WriteLine("Is Draw");
-                        b1.Clear();
-                    }
-
+                        return;
+                    }             
                 }
                 else
                 {
@@ -65,16 +49,33 @@ namespace MyserverApp
                 int rec = sck.Receive(databot,0,databot.Length,0);            
                 Array.Resize(ref databot,rec); 
                 string positionbot = Encoding.ASCII.GetString(databot);
-                string[] arrbotplay = positionbot.Split(' ');
-                int botrow = Int32.Parse(arrbotplay[0]);
-                int botcol = Int32.Parse(arrbotplay[1]);
-                string botstr = arrbotplay[2];
-                b1.Put(botrow,botcol,botstr);       
-                b1.DisplayBoard();
-
-
-     
+                CheckAllofGame(b1,positionbot);
+  
             }             
+        }
+
+        private void CheckAllofGame(OXBoard a1,string msg)
+        {
+            string[] arrmsg = msg.Split(' ');
+            int row = Int32.Parse(arrmsg[0]);
+            int col = Int32.Parse(arrmsg[1]);
+            string mark = arrmsg[2];                
+            a1.Put(row,col,mark); 
+            bool isover = a1.Isgameover();
+            string getwinner = a1.GettheWinner();
+            bool isdraw = a1.CheckDraw(); 
+            a1.DisplayBoard();                  
+            if(isover == true && isdraw != true)
+            {                                 
+                Console.WriteLine("Winner is {0}",getwinner);
+                hasreturn = true;
+                return;                                 
+            }
+            else if(isdraw == true && getwinner == "")
+            {
+                Console.WriteLine("Is Draw");
+                a1.Clear();
+            } 
         }
 
         

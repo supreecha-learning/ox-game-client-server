@@ -37,7 +37,7 @@ namespace MyserverApp
                 Socket acceptedConn = mysck.Accept(); // มีการ connect จาก client
                 Thread t1 = new Thread(() => DoWork(acceptedConn)); //Annoymous function
                 t1.Start();
-                
+                         
             }
         }
 
@@ -68,6 +68,11 @@ namespace MyserverApp
                 sck.Send(databot,0,databot.Length,0);
 
             }
-        }    
+        }   
+
+        public void ReturnOut()
+        {
+            return;
+        } 
     }   
 }
