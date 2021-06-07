@@ -38,13 +38,14 @@ namespace MyserverApp
                 Thread t1 = new Thread(() => DoWork(acceptedConn)); //Annoymous function
                 t1.Start();
                          
-            }
+            }           
         }
 
         private void DoWork(Socket sck)
         {
             Console.WriteLine("Connect Complete");        
             OXbot mybot = new OXbot();
+            
 
             while(true)
             {
@@ -59,10 +60,19 @@ namespace MyserverApp
                 string mark = arrmsg[2]; 
 
                 string flipmark = mybot.FlipMark(mark);
-                mybot.PutPositionBoard(row,col,mark);  
-                string posibot = mybot.SendPositionBotplay(flipmark);
-                //Console.WriteLine(posibot);
+                mybot.PutPositionBoard(row,col,mark);
                 
+                string posibot = mybot.SendPositionBotplay(flipmark);
+                bool isover = mybot.Isgameover();
+                mybot.DisplayBoard();
+                if(isover == true)
+                {
+                    Console.WriteLine("Game Over");
+                    byte[] databot1 = Encoding.ASCII.GetBytes(posibot);
+                    sck.Send(databot1,0,databot1.Length,0);
+                    return;
+                    
+                }
                 //Send botplay
                 byte[] databot = Encoding.ASCII.GetBytes(posibot);
                 sck.Send(databot,0,databot.Length,0);
@@ -70,9 +80,6 @@ namespace MyserverApp
             }
         }   
 
-        public void ReturnOut()
-        {
-            return;
-        } 
+        
     }   
 }

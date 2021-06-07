@@ -8,7 +8,7 @@ namespace MyserverApp
 {
     public class Client
     {
-        private bool hasreturn = false;
+        
 
         public void RunClient()
         {
@@ -29,16 +29,13 @@ namespace MyserverApp
                 
                 if(msg != "clear")
                 {              
-                    CheckAllofGame(b1,msg);
-                    if(hasreturn == true)
-                    {
-                        return;
-                    }             
+                    CheckAllofGame(b1,msg);   
                 }
                 else
                 {
                     b1.Clear();
                     b1.DisplayBoard();
+                    
                 } 
                 byte[] buffer = Encoding.ASCII.GetBytes(msg);
                 sck.Send(buffer,0,buffer.Length,0);
@@ -68,13 +65,12 @@ namespace MyserverApp
             if(isover == true && isdraw != true)
             {                                 
                 Console.WriteLine("Winner is {0}",getwinner);
-                hasreturn = true;
                 return;                                 
             }
             else if(isdraw == true && getwinner == "")
             {
                 Console.WriteLine("Is Draw");
-                a1.Clear();
+                
             } 
         }
 
