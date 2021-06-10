@@ -64,7 +64,7 @@ namespace MyserverApp
                 
                 string posibot = mybot.SendPositionBotplay(flipmark);
                 bool isover = mybot.Isgameover();
-                mybot.DisplayBoard();
+                
                 if(isover == true)
                 {
                     Console.WriteLine("Game Over");

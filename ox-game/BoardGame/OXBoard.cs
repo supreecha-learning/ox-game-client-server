@@ -174,7 +174,7 @@ namespace MyserverApp.BoardGame
             return winner;
         }
 
-        public void Clear()
+        public bool Clear()
         {
             for(int i = 0; i < 3 ; i++)
             {
@@ -183,6 +183,7 @@ namespace MyserverApp.BoardGame
                     board[i, j] = " ";
                 }
             }
+            return true;
             
             
         }

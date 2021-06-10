@@ -5,9 +5,9 @@ namespace MyserverApp.BoardGame
     public class OXbot
     {
 
-        private string[,] Oxser = new string[3,3];
+        public string[,] Oxser = new string[3,3];
+        
         private bool mybool = true;
-
         private string winner = "";
         public OXbot()
         {
@@ -20,7 +20,7 @@ namespace MyserverApp.BoardGame
         {
             string result = "";
             string flipmark = flip;
-            
+              
             if(mybool != false)
             {
                 for(int row = 0 ; row < 3; row++)
@@ -31,7 +31,7 @@ namespace MyserverApp.BoardGame
                         {
                             Oxser[row,col] = flipmark;
                             result = row + " " + col + " " + flipmark;
-                            return result;   
+                            return result;
                         }
                     
                     }
@@ -189,17 +189,20 @@ namespace MyserverApp.BoardGame
             
         }
 
-        public void PutPositionBoard(int row,int col,string mark)
+        public bool PutPositionBoard(int row,int col,string mark)
         {
             
             if (Oxser[row,col].Equals(" "))
             {
-                Oxser[row,col] = mark;
+                Oxser[row,col] = mark;      
+                return true;          
             }
             else
             {
                 mybool = false;       
             }
+            return false;
+           
             
         }
         public void DisplayBoard()
