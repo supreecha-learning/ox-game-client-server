@@ -10,6 +10,8 @@ namespace MyserverApp
     
     public class Server
     {
+        private ISocket mysck = new MySocket();        
+
         public string[,] OXboardSer = new string[3,3];
         
         public Server()
@@ -23,12 +25,14 @@ namespace MyserverApp
             }
         }
         
+        public void SetSocket(ISocket sck)
+        {
+            mysck = sck;
+        }
 
         public void RunServer()
-        {         
-            
-            Socket mysck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp); //สร้าง socket โดยระบุ ip sockettype protocaltype
-            mysck.Bind(new IPEndPoint(IPAddress.Parse("127.0.0.1"),6666)); // สั่งให้ socket รอการเชื่อมต่อโดยผ่าน port ที่ระบุ จาก client
+        {                     
+            mysck.Bind("127.0.0.1", 6666); // สั่งให้ socket รอการเชื่อมต่อโดยผ่าน port ที่ระบุ จาก client
             Console.WriteLine("Waiting for Connect");     
             
             while (true)
@@ -37,15 +41,13 @@ namespace MyserverApp
                 Socket acceptedConn = mysck.Accept(); // มีการ connect จาก client
                 Thread t1 = new Thread(() => DoWork(acceptedConn)); //Annoymous function
                 t1.Start();
-                         
-            }           
+            }
         }
 
         private void DoWork(Socket sck)
         {
             Console.WriteLine("Connect Complete");        
             OXbot mybot = new OXbot();
-            
 
             while(true)
             {
@@ -60,26 +62,20 @@ namespace MyserverApp
                 string mark = arrmsg[2]; 
 
                 string flipmark = mybot.FlipMark(mark);
-                mybot.PutPositionBoard(row,col,mark);
-                
+                mybot.PutPositionBoard(row,col,mark);  
                 string posibot = mybot.SendPositionBotplay(flipmark);
-                bool isover = mybot.Isgameover();
+                mybot.DisplayBoard();
+                //Console.WriteLine(posibot);
                 
-                if(isover == true)
-                {
-                    Console.WriteLine("Game Over");
-                    byte[] databot1 = Encoding.ASCII.GetBytes(posibot);
-                    sck.Send(databot1,0,databot1.Length,0);
-                    return;
-                    
-                }
                 //Send botplay
                 byte[] databot = Encoding.ASCII.GetBytes(posibot);
                 sck.Send(databot,0,databot.Length,0);
-
             }
         }   
 
-        
+        public void ReturnOut()
+        {
+            return;
+        } 
     }   
 }

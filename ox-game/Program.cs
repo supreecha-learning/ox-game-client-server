@@ -9,7 +9,7 @@ namespace MyserverApp
         private static void Main(string[] args)
         {
             string command = args[0];
-            Program.RunProgram(command);
+            RunProgram(command);
             
  
         }
