@@ -7,6 +7,15 @@ namespace MyserverApp.BoardGame
     {
         private Socket sck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
 
+        public MySocket(Socket s)
+        {
+            sck = s;
+        }
+
+        public MySocket()
+        {
+        }
+
         public void Bind(string ip, int port)
         {
             sck.Bind(new IPEndPoint(IPAddress.Parse(ip), port));
@@ -17,10 +26,24 @@ namespace MyserverApp.BoardGame
             sck.Listen(backLog);
         }
 
-        public Socket Accept()
+        public ISocket Accept()
         {
             Socket cliSck = sck.Accept();
-            return cliSck;
+
+            ISocket s = new MySocket(cliSck);
+            return s;
         }
+
+        public int Receive(byte[] buff, int offset, int size, SocketFlags flag)
+        {
+            int len = sck.Receive(buff, offset, size, flag);
+            return len;
+        }
+
+        public int Send(byte[] buff, int offset, int size, SocketFlags flag)
+        {
+            int len = sck.Send(buff, offset, size, flag);
+            return len;
+        }         
     }
 }

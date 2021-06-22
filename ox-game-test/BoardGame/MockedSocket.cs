@@ -1,3 +1,4 @@
+using System.Text;
 using System.Net.Sockets;
 
 namespace MyserverApp.BoardGame
@@ -12,12 +13,24 @@ namespace MyserverApp.BoardGame
         {
         }
 
-        public Socket Accept()
+        public ISocket Accept()
         {
-            
-            Socket cliSck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+            ISocket cliSck = new MockedSocket();
             return cliSck;
-            
         }
+
+        public int Receive(byte[] buff, int offset, int size, SocketFlags flag)
+        {
+            string dat = "1 1 X";  
+            byte[] bytes = Encoding.ASCII.GetBytes(dat); 
+
+            bytes.CopyTo(buff, 0);
+            return bytes.Length;
+        }
+
+        public int Send(byte[] buff, int offset, int size, SocketFlags flag)
+        {
+            return 0;
+        }         
     }
 }

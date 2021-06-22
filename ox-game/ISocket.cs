@@ -6,7 +6,9 @@ namespace MyserverApp.BoardGame
     {
         public void Bind(string ip, int port);
         public void Listen(int backLog);
-        public Socket Accept();
+        public ISocket Accept();
+        public int Receive(byte[] buff, int offset, int size, SocketFlags flag);
+        public int Send(byte[] buff, int offset, int size, SocketFlags flag);
         
     }
 }

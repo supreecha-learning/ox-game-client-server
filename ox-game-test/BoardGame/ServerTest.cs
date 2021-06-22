@@ -17,6 +17,7 @@ namespace MyserverApp.BoardGame
             
             var srv = new Server();
             srv.SetSocket(mckSocket);
+            srv.SetIsInfinte(false);
 
             srv.RunServer();
         }
