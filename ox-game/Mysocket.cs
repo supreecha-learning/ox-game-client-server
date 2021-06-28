@@ -24,6 +24,8 @@ namespace MyserverApp.BoardGame
         public void Listen(int backLog)
         {
             sck.Listen(backLog);
+            
+        
         }
 
         public ISocket Accept()

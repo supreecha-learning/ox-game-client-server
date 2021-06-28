@@ -1,5 +1,5 @@
 using System;
-using MyserverApp;
+
 namespace MyserverApp.BoardGame
 {
     public class OXbot
