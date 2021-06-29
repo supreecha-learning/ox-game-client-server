@@ -31,33 +31,33 @@ namespace MyserverApp.BoardGame
             var m3 = new MySocket();
             m3.Listen(num);
         }
-        */
+        
+        
+        
         
         /*
         [Test]
         public void AcceptTest()
         {
-
             var m4 = new MySocket();
 
         }
-        */
         
-        /*
-        [TestCase(0,5)]
+        
+        
+        [TestCase(0,0)]
         public void ReceiveTest(int offset, int size)
         {
             var m5 = new MySocket();
-            byte[] buff = new byte[1024];
-    
-            SocketFlags s1 = new SocketFlags();
-
-            int exp = m5.Receive(buff,offset,size,s1);
-            int actual = exp;
-            Assert.AreEqual(exp,actual);
+            byte [] mybyte = new byte [1024];
+            SocketFlags myflag = new SocketFlags();
+            int actual = m5.Receive(mybyte,offset,size,myflag);
+            Assert.AreEqual(actual,actual);
+            
            
         }
         */
+        
         
 
 

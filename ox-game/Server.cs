@@ -1,6 +1,5 @@
 using System;
-using System.Net;
-using System.Net.Sockets;
+
 using System.Text;
 using System.Threading;
 using MyserverApp.BoardGame;
@@ -70,7 +69,7 @@ namespace MyserverApp
                 string flipmark = mybot.FlipMark(mark);
                 mybot.PutPositionBoard(row,col,mark);  
                 string posibot = mybot.SendPositionBotplay(flipmark);
-                mybot.DisplayBoard();
+                //mybot.DisplayBoard();
                 //Console.WriteLine(posibot);
                 
                 //Send botplay

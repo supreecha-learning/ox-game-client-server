@@ -9,7 +9,7 @@ namespace MyserverApp
     public class Client
     {
         
-
+        //private MySocketclient mysck = new MySocketclient();
         public void RunClient()
         {
             
