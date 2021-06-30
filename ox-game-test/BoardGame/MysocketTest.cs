@@ -7,6 +7,8 @@ namespace MyserverApp.BoardGame
 {
     public class MysocketTest 
     {
+        public byte[] mybuff = new byte[1024];
+        public SocketFlags flag = new SocketFlags();
         [SetUp]
         public void Setup()
         {
@@ -25,38 +27,41 @@ namespace MyserverApp.BoardGame
             m2.Bind(ip,port);
         }
         /*
+        [Test]
+        public void AcceptTest()
+        {
+            var m3 = new MySocket();      
+            ISocket a = m3.Accept();
+            
+            
+            
+        }
+        */
+/*
         [TestCase(10)]
         public void ListenTest(int num)
         {
             var m3 = new MySocket();
             m3.Listen(num);
         }
-        
-        
-        
-        
         /*
-        [Test]
-        public void AcceptTest()
-        {
-            var m4 = new MySocket();
-
-        }
-        
-        
-        
         [TestCase(0,0)]
         public void ReceiveTest(int offset, int size)
         {
-            var m5 = new MySocket();
-            byte [] mybyte = new byte [1024];
-            SocketFlags myflag = new SocketFlags();
-            int actual = m5.Receive(mybyte,offset,size,myflag);
-            Assert.AreEqual(actual,actual);
-            
+            var m6 = new MySocket();
+            string dat = "1 1 X";  
+            byte[] bytes = Encoding.ASCII.GetBytes(dat); 
+            SocketFlags s1 = new SocketFlags();
+
+            int expect = m6.Receive(bytes,offset,size,s1);
+            int actual = expect;
+            Assert.AreEqual(expect,actual);
+
+ 
            
         }
         */
+        
         
         
 

@@ -7,6 +7,7 @@ namespace MyserverApp.BoardGame
     {
         private Socket sck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
 
+
         public MySocket(Socket s)
         {
             sck = s;
@@ -24,13 +25,12 @@ namespace MyserverApp.BoardGame
         public void Listen(int backLog)
         {
             sck.Listen(backLog);
-
         }
 
         public ISocket Accept()
         {
+            
             Socket cliSck = sck.Accept();
-
             ISocket s = new MySocket(cliSck);
             return s;
         }

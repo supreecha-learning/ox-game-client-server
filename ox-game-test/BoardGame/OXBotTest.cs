@@ -21,7 +21,6 @@ namespace MyserverApp.BoardGame
             bool actual1 = mybot.PutPositionBoard(row,col,mark);
             Assert.AreEqual(false,actual1);
 
-            
         }
         private void PutBoardFromString(OXbot board, string boardStr)
         {
