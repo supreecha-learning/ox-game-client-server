@@ -16,6 +16,8 @@ namespace MyserverApp.BoardGame
         public MySocket()
         {
         }
+        
+        
 
         public void Bind(string ip, int port)
         {
@@ -33,6 +35,10 @@ namespace MyserverApp.BoardGame
             Socket cliSck = sck.Accept();
             ISocket s = new MySocket(cliSck);
             return s;
+        }
+        public void Connect(EndPoint ed)
+        {
+
         }
 
         public int Receive(byte[] buff, int offset, int size, SocketFlags flag)
