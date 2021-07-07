@@ -8,12 +8,12 @@ namespace MyserverApp
 {
     public class Client
     {
-        
-        
+        private ISocket sck = new MySocket();
+       
         public void RunClient()
         {
             
-            Socket sck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+            
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"),6666);
             sck.Connect(endpoint);
             string msgser = "Hello Client";
@@ -49,6 +49,11 @@ namespace MyserverApp
                 CheckAllofGame(b1,positionbot);
   
             }             
+        }
+
+        public void SetSocket(ISocket set)
+        {
+            sck = set;
         }
 
         private void CheckAllofGame(OXBoard a1,string msg)

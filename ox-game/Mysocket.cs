@@ -38,7 +38,7 @@ namespace MyserverApp.BoardGame
         }
         public void Connect(EndPoint ed)
         {
-
+            sck.Connect(ed);
         }
 
         public int Receive(byte[] buff, int offset, int size, SocketFlags flag)

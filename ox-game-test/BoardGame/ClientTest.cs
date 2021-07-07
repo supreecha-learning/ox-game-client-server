@@ -16,6 +16,8 @@ namespace MyserverApp.BoardGame
 
             var mckSocket = new MockedSocket();
             var cli = new Client();
+            cli.SetSocket(mckSocket);
+            cli.RunClient();
             /*
 
             var mckSocket = new MockedSocket();
@@ -26,7 +28,9 @@ namespace MyserverApp.BoardGame
 
             srv.RunServer();
             */
+            
         }
+        
     
     }
 }

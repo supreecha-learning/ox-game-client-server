@@ -6,7 +6,6 @@ using MyserverApp.BoardGame;
 
 namespace MyserverApp
 {
-    
     public class Server
     {
         private ISocket mysck = new MySocket();

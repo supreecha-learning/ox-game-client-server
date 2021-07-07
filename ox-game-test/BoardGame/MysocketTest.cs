@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using System.Net.Sockets;
-using System.Net;
+
 
 
 namespace MyserverApp.BoardGame
@@ -26,43 +26,8 @@ namespace MyserverApp.BoardGame
             var m2 = new MySocket();
             m2.Bind(ip,port);
         }
-        /*
-        [Test]
-        public void AcceptTest()
-        {
-            var m3 = new MySocket();      
-            ISocket a = m3.Accept();
-            
-            
-            
-        }
-        */
         
-/*
-        [TestCase(10)]
-        public void ListenTest(int num)
-        {
-            var m3 = new MySocket();
-            m3.Listen(num);
-        }
-        /*
         
-        [TestCase(0,0)]
-        public void ReceiveTest(int offset, int size)
-        {
-            var m6 = new MySocket();
-            string dat = "1 1 X";  
-            byte[] bytes = Encoding.ASCII.GetBytes(dat); 
-            SocketFlags s1 = new SocketFlags();
-
-            int expect = m6.Receive(bytes,offset,size,s1);
-            int actual = expect;
-            Assert.AreEqual(expect,actual);
-
- 
-           
-        }
-        */
         
         
         

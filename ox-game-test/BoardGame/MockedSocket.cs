@@ -6,6 +6,7 @@ namespace MyserverApp.BoardGame
 {
     public class MockedSocket : ISocket
     {
+        private Socket sck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
         public void Bind(string ip, int port)
         {
         }
@@ -35,7 +36,7 @@ namespace MyserverApp.BoardGame
         }   
         public void Connect(EndPoint ed)
         {
-
+            sck.Connect(ed);
         }      
     }
 }
