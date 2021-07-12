@@ -36,7 +36,7 @@ namespace MyserverApp.BoardGame
             ISocket s = new MySocket(cliSck);
             return s;
         }
-        public void Connect(EndPoint ed)
+        public void Connect(IPEndPoint ed)
         {
             sck.Connect(ed);
         }

@@ -11,7 +11,7 @@ namespace MyserverApp.BoardGame
         public int Receive(byte[] buff, int offset, int size, SocketFlags flag);
         public int Send(byte[] buff, int offset, int size, SocketFlags flag);
 
-        public void Connect(EndPoint ed);
+        public void Connect(IPEndPoint ed);
 
         
     }

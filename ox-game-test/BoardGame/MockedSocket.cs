@@ -9,6 +9,7 @@ namespace MyserverApp.BoardGame
         private Socket sck = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
         public void Bind(string ip, int port)
         {
+            sck.Bind(new IPEndPoint(IPAddress.Parse(ip), port));
         }
 
         public void Listen(int backLog)
@@ -34,7 +35,7 @@ namespace MyserverApp.BoardGame
         {
             return 0;
         }   
-        public void Connect(EndPoint ed)
+        public void Connect(IPEndPoint ed)
         {
             sck.Connect(ed);
         }      

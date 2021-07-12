@@ -12,8 +12,7 @@ namespace MyserverApp
        
         public void RunClient()
         {
-            
-            
+                      
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"),6666);
             sck.Connect(endpoint);
             string msgser = "Hello Client";
@@ -50,6 +49,7 @@ namespace MyserverApp
   
             }             
         }
+        
 
         public void SetSocket(ISocket set)
         {

@@ -12,12 +12,16 @@ namespace MyserverApp.BoardGame
 
         [Test]
         public void RunClientTest()
-        {
-
+        {       
             var mckSocket = new MockedSocket();
+
             var cli = new Client();
             cli.SetSocket(mckSocket);
+            
             cli.RunClient();
+            
+            
+            
             /*
 
             var mckSocket = new MockedSocket();
