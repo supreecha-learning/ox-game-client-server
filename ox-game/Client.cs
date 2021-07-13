@@ -1,6 +1,6 @@
 using System;
 using System.Net;
-using System.Net.Sockets;
+
 using System.Text;
 using MyserverApp.BoardGame;
 
@@ -9,6 +9,8 @@ namespace MyserverApp
     public class Client
     {
         private ISocket sck = new MySocket();
+
+        private bool isinfinte = true;
        
         public void RunClient()
         {
@@ -20,11 +22,11 @@ namespace MyserverApp
             OXBoard b1 = new OXBoard();
             OXbot mybot = new OXbot();
             
-            while (true)
+            do
             {       
                  
-                Console.Write("Player play : ");
-                string msg = Console.ReadLine();
+                MyConsole.Write("Player play : ");
+                string msg = MyConsole.ReadLine();
                 
                 if(msg != "clear")
                 {              
@@ -47,13 +49,18 @@ namespace MyserverApp
                 string positionbot = Encoding.ASCII.GetString(databot);
                 CheckAllofGame(b1,positionbot);
   
-            }             
+            }while(false);        
         }
         
 
         public void SetSocket(ISocket set)
         {
             sck = set;
+        }
+
+        public void Setinfiniteloop(bool flag)
+        {
+            isinfinte = flag;
         }
 
         private void CheckAllofGame(OXBoard a1,string msg)
@@ -69,12 +76,13 @@ namespace MyserverApp
             a1.DisplayBoard();                  
             if(isover == true && isdraw != true)
             {                                 
-                Console.WriteLine("Winner is {0}",getwinner);
+                MyConsole.WriteLine("Winner is {0}",getwinner);
                 return;                                 
             }
+
             else if(isdraw == true && getwinner == "")
             {
-                Console.WriteLine("Is Draw");
+                MyConsole.WriteLine("Is Draw");
                 
             } 
         }

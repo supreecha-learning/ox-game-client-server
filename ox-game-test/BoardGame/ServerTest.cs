@@ -14,11 +14,9 @@ namespace MyserverApp.BoardGame
         public void RunServerTest()
         {
             var mckSocket = new MockedSocket();
-            
             var srv = new Server();
             srv.SetSocket(mckSocket);
             srv.SetIsInfinte(false);
-
             srv.RunServer();
         }
     
