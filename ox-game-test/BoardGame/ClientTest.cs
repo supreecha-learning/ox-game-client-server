@@ -10,24 +10,30 @@ namespace MyserverApp.BoardGame
             
         }
 
-        [TestCase("1 1 X")]
-        [TestCase("clear")]
-        public void RunClientTest(string cmd)
+        [TestCase("1 1 X",true,false)]
+        [TestCase("1 2 X",true,true)]
+        [TestCase("clear",false,false)]
+        public void RunClientTest(string cmd,bool isover,bool isdraw)
         {       
             var mckSocket = new MockedSocket();
 
             var cli = new Client();
+            cli.SetIsover(isover);
+            cli.SetDraw(isdraw);
             cli.SetSocket(mckSocket);
             cli.Setinfiniteloop(false);
             MyConsole.SetIsTestMode(true);
+            //MyConsole.ReadLine();
             MyConsole.SetReturnMessage(cmd); 
             cli.RunClient();
-            
-            
-            
-        
-            
+      
         }
+        
+        
+        
+
+
+        
         
     
     }

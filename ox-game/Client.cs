@@ -11,6 +11,10 @@ namespace MyserverApp
         private ISocket sck = new MySocket();
 
         private bool isinfinte = true;
+
+        private bool myisover = false;
+
+        private bool myisdraw = false;
        
         public void RunClient()
         {
@@ -62,6 +66,16 @@ namespace MyserverApp
         {
             isinfinte = flag;
         }
+        public void SetIsover(bool myset)
+        {
+            myisover = myset;
+        }
+
+        public void SetDraw(bool mydraw)
+        {
+            myisdraw  = mydraw;
+ 
+        }
 
         private void CheckAllofGame(OXBoard a1,string msg)
         {
@@ -70,9 +84,11 @@ namespace MyserverApp
             int col = Int32.Parse(arrmsg[1]);
             string mark = arrmsg[2];                
             a1.Put(row,col,mark); 
-            bool isover = a1.Isgameover();
+            bool isover = a1.Isgameover();         
+            isover = myisover;
             string getwinner = a1.GettheWinner();
             bool isdraw = a1.CheckDraw(); 
+            isdraw = myisdraw;
             a1.DisplayBoard();                  
             if(isover == true && isdraw != true)
             {                                 
@@ -86,6 +102,7 @@ namespace MyserverApp
                 
             } 
         }
+        
 
         
 
