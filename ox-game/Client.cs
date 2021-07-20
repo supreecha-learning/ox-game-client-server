@@ -1,6 +1,5 @@
 using System;
 using System.Net;
-
 using System.Text;
 using MyserverApp.BoardGame;
 
@@ -29,7 +28,7 @@ namespace MyserverApp
             do
             {       
                  
-                MyConsole.Write("Player play : ");
+                MyConsole.Write("Player play : ");        
                 string msg = MyConsole.ReadLine();
                 
                 if(msg != "clear")

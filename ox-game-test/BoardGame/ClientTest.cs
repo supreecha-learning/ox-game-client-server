@@ -28,6 +28,12 @@ namespace MyserverApp.BoardGame
             cli.RunClient();
       
         }
+        [Test]
+        public void RunClientTest()
+        {
+            MyConsole.SetIsTestMode(false);
+            MyConsole.ReadLine();
+        }
         
         
         

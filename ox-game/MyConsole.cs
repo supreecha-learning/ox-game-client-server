@@ -6,13 +6,15 @@ namespace MyserverApp.BoardGame
     {
         private static bool intest = false;
         private static string retmsg = "";
+        
 
 
         public static void WriteLine(string format, object arg0)
         {
             Console.WriteLine(format,arg0);
-            
+                   
         }
+        
         public static void WriteLine(string format)
         {
             Console.WriteLine(format);

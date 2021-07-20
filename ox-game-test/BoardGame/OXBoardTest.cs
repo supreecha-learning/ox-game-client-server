@@ -16,7 +16,7 @@ namespace MyserverApp.BoardGame
         public void PutSamePositionTest(int row, int col, string mark)
         {
             var board = new OXBoard();
-
+            
             bool success = board.Put(row, col, mark);
             Assert.AreEqual(true, success);
 
