@@ -18,6 +18,7 @@ namespace MyserverApp.BoardGame
             var mckSocket = new MockedSocket();
 
             var cli = new Client();
+            cli.Istest(true);
             cli.SetIsover(isover);
             cli.SetDraw(isdraw);
             cli.SetSocket(mckSocket);
@@ -28,12 +29,7 @@ namespace MyserverApp.BoardGame
             cli.RunClient();
       
         }
-        [Test]
-        public void RunClientTest()
-        {
-            MyConsole.SetIsTestMode(false);
-            MyConsole.ReadLine();
-        }
+        
         
         
         

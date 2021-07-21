@@ -8,9 +8,8 @@ namespace MyserverApp
     public class Client
     {
         private ISocket sck = new MySocket();
-
+        private bool istest = false;
         private bool isinfinte = true;
-
         private bool myisover = false;
 
         private bool myisdraw = false;
@@ -20,7 +19,7 @@ namespace MyserverApp
                       
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"),6666);
             sck.Connect(endpoint);
-            string msgser = "Hello Client";
+            string msgser = "Hello Client";       
             Console.WriteLine("Receive : {0}",msgser);          
             OXBoard b1 = new OXBoard();
             OXbot mybot = new OXbot();
@@ -39,20 +38,25 @@ namespace MyserverApp
                 {
                     b1.Clear();
                     b1.DisplayBoard();
-                    
-                } 
-                byte[] buffer = Encoding.ASCII.GetBytes(msg);
-                sck.Send(buffer,0,buffer.Length,0);
-
-                //receive from bot
+                }
                 
+                byte[] buffer = Encoding.ASCII.GetBytes(msg);      
+                sck.Send(buffer,0,buffer.Length,0);     
+                //Console.ReadLine();
+                //receive from bot     
                 byte[] databot = new byte[1024];
                 int rec = sck.Receive(databot,0,databot.Length,0);            
                 Array.Resize(ref databot,rec); 
                 string positionbot = Encoding.ASCII.GetString(databot);
                 CheckAllofGame(b1,positionbot);
+                
   
-            }while(false);        
+            }while(isinfinte);        
+        }
+        
+        public void Istest(bool test)
+        {
+            istest = test;
         }
         
 
@@ -83,11 +87,16 @@ namespace MyserverApp
             int col = Int32.Parse(arrmsg[1]);
             string mark = arrmsg[2];                
             a1.Put(row,col,mark); 
-            bool isover = a1.Isgameover();         
-            isover = myisover;
+            bool isover = a1.Isgameover();
             string getwinner = a1.GettheWinner();
             bool isdraw = a1.CheckDraw(); 
-            isdraw = myisdraw;
+
+            if(istest == true)
+            {
+                isover = myisover;
+                isdraw = myisdraw;
+            }
+                         
             a1.DisplayBoard();                  
             if(isover == true && isdraw != true)
             {                                 
